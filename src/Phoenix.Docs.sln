@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7CBD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Docs", "Phoenix.Docs\Phoenix.Docs.csproj", "{26698180-30E2-4CC8-85AB-6AE0D6080951}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetRazorPagesDocsSample", "Samples\AspNetRazorPagesDocsSample\AspNetRazorPagesDocsSample.csproj", "{58FBF850-29A5-4B32-98F4-8DEAB28E917C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,9 +27,16 @@ Global
 		{26698180-30E2-4CC8-85AB-6AE0D6080951}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26698180-30E2-4CC8-85AB-6AE0D6080951}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26698180-30E2-4CC8-85AB-6AE0D6080951}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58FBF850-29A5-4B32-98F4-8DEAB28E917C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58FBF850-29A5-4B32-98F4-8DEAB28E917C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58FBF850-29A5-4B32-98F4-8DEAB28E917C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58FBF850-29A5-4B32-98F4-8DEAB28E917C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{58FBF850-29A5-4B32-98F4-8DEAB28E917C} = {7CBDA3C8-A1C0-4282-9510-7B0819F68105}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {742DFBA7-62A5-40FB-A60A-13072ACEA376}
