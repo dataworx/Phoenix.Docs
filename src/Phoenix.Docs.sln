@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Global", "_Global", "{7855FEE4-2741-44B5-A8C7-F058A26DB1F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CE66E2FE-6933-477D-A131-60186B3637E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7CBDA3C8-A1C0-4282-9510-7B0819F68105}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phoenix.Docs", "Phoenix.Docs\Phoenix.Docs.csproj", "{26698180-30E2-4CC8-85AB-6AE0D6080951}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26698180-30E2-4CC8-85AB-6AE0D6080951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26698180-30E2-4CC8-85AB-6AE0D6080951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26698180-30E2-4CC8-85AB-6AE0D6080951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26698180-30E2-4CC8-85AB-6AE0D6080951}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

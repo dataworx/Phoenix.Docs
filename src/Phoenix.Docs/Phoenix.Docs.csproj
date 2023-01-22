@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>Phoenix.Docs</Title>
+    <Authors>René Kuss</Authors>
+    <Company>Dataworx</Company>
+    <Description>Generate documentation from files stored in your Repo and serve them in any ASP.Net application</Description>
+    <Copyright>René Kuss</Copyright>
+    <PackageProjectUrl>https://github.com/dataworx/Phoenix.Docs</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dataworx/Phoenix.Docs</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Documentation Generator</PackageTags>
+  </PropertyGroup>
+
+</Project>
