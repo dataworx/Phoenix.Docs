@@ -25,7 +25,7 @@ namespace Phoenix.Docs.Configuration
                 pattern: $"{options.Value.UrlBasePath}/{{projectShortName}}/{{*filePath}}",
                 new
                 {
-                    controller = "PhoenixDocs",
+                    controller = "Docs",
                     action = "Index"
                 });
             return endpoints;

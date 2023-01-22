@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Phoenix.Docs.Controllers;
 
-public class PhoenixDocsController : Controller
+public class DocsController : Controller
 {
     public async Task<string> Index(string projectShortName = "", string filePath = "")
     {
