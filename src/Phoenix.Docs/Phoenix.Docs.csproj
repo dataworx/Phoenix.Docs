@@ -16,4 +16,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\" />
+  </ItemGroup>
+
 </Project>

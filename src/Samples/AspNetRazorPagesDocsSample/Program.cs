@@ -1,11 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Phoenix.Docs.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// Adding Options for Phoenix.Docs
+// Todo: Add to docs
+builder.Services.Configure<DocsOptions>(builder.Configuration.GetSection(DocsOptions.CONFIG_KEY));
 
 var app = builder.Build();
 
