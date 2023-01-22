@@ -11,7 +11,7 @@ builder.Services.AddRazorPages();
 
 // Adding Options for Phoenix.Docs
 // Todo: Add to docs
-builder.Services.Configure<DocsOptions>(builder.Configuration.GetSection(DocsOptions.CONFIG_KEY));
+builder.Services.AddPhoenixDocs(builder.Configuration);
 
 var app = builder.Build();
 
@@ -34,6 +34,6 @@ app.MapRazorPages();
 
 // Registering the Phoenix.Docs controllers
 // Todo: Add to docs
-app.MapPhoenixDocsControllers();
+app.UsePhoenixDocs();
 
 app.Run();

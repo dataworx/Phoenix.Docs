@@ -7,11 +7,11 @@ using Serilog;
 
 namespace Phoenix.Docs.Configuration
 {
-    public static class PhoenixDocsEndpointRouteBuilderExtensions
+    public static class EndpointRouteBuilderExtensions
     {
-        private static readonly ILogger Logger = Log.ForContext(typeof(PhoenixDocsEndpointRouteBuilderExtensions));
+        private static readonly ILogger Logger = Log.ForContext(typeof(EndpointRouteBuilderExtensions));
         
-        public static IEndpointRouteBuilder MapPhoenixDocsControllers(this IEndpointRouteBuilder endpoints)
+        public static IEndpointRouteBuilder UsePhoenixDocs(this IEndpointRouteBuilder endpoints)
         {
             var options = endpoints.ServiceProvider.GetService<IOptions<DocsOptions>>();
             if (options == null)
