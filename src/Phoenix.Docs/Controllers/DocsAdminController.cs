@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using Phoenix.Docs.AppServices;
-using Phoenix.Docs.Domain;
-using System;
-using System.Linq;
+using Phoenix.Docs.Errors;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -33,12 +30,24 @@ namespace Phoenix.Docs.Controllers
         {
             var result = await this.docsCreationService.CreateDocs(shortName);
             
-            if (result.Succees)
+            if (result.Success)
             {
                 return Created(result.Value, null);
             }
 
-            return StatusCode((int)HttpStatusCode.InternalServerError, result.Error);
+            if (result.Error != null)
+            {
+                switch (result.Error.ErrorCode)
+                {
+                    case ErrorCode.NotFound:
+                        return NotFound();
+                    default:
+                        return StatusCode((int)HttpStatusCode.InternalServerError, result.Error.ErrorMessage);
+                }
+                
+            }
+
+            return StatusCode((int)HttpStatusCode.InternalServerError);
         }
     }
 }
