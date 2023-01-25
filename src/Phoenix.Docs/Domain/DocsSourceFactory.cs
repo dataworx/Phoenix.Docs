@@ -23,7 +23,7 @@ public class DocsSourceFactory : IDocsSourceFactory
     
     #endregion
 
-    public IDocsSource? Create(string sourceKey)
+    public IDocsSource? Get(string sourceKey)
     {
         var source = sources.SingleOrDefault(x => x.Key.Equals(sourceKey, StringComparison.InvariantCultureIgnoreCase));
         return source;

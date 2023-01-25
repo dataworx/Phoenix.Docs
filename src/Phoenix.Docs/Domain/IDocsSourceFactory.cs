@@ -2,6 +2,6 @@
 {
     public interface IDocsSourceFactory
     {
-        IDocsSource? Create(string sourceKey);
+        IDocsSource? Get(string sourceKey);
     }
 }
