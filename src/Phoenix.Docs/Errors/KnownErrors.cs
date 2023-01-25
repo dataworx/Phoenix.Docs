@@ -8,5 +8,10 @@
         {
             public static Error NotFound = new Error(ErrorCode.NotFound, "The request project was not found.");
         }
+
+        public static class DocsSource
+        {
+            public static Error SourceNotFound = new Error(ErrorCode.NotFound, "The requested IDocsSource was not found.");
+        }
     }
 }

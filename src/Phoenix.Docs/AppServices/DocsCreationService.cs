@@ -1,4 +1,5 @@
 ﻿using Phoenix.Docs.Configuration;
+using Phoenix.Docs.Domain;
 using Phoenix.Docs.Errors;
 using Phoenix.Docs.Results;
 using System;
@@ -12,26 +13,34 @@ public class DocsCreationService : IDocsCreationService
     #region Fields
 
     private readonly IDocsConfigurationProvider configProvider;
+    private readonly IDocsSourceFactory sourceFactory;
 
     #endregion
 
     #region Constructors
     
-    public DocsCreationService(IDocsConfigurationProvider configProvider)
+    public DocsCreationService(IDocsConfigurationProvider configProvider, IDocsSourceFactory sourceFactory)
     {
         this.configProvider = configProvider;
+        this.sourceFactory = sourceFactory;
     } 
     
     #endregion
 
-    public Task<Result<string>> CreateDocs(string projectShortName)
+    public async Task<Result<string>> CreateDocs(string projectShortName)
     {
         var project = this.configProvider.Settings.Projects
             .SingleOrDefault(x => x.ShortName.Equals(projectShortName, StringComparison.InvariantCultureIgnoreCase));
 
         if (project == null)
         {
-            return Task.FromResult(Result<string>.Fail(KnownErrors.Project.NotFound));
+            return Result<string>.Fail(KnownErrors.Project.NotFound);
+        }
+
+        var docsSource = sourceFactory.Create(project.DocsSource);
+        if (docsSource == null)
+        {
+            return Result<string>.Fail(KnownErrors.DocsSource.SourceNotFound);
         }
 
         return null;

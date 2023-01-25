@@ -12,6 +12,7 @@ namespace Phoenix.Docs.Configuration
             services.Configure<DocsOptions>(configuration.GetSection(DocsOptions.CONFIG_KEY));
             services.AddScoped<IDocsCreationService, DocsCreationService>();
             services.AddScoped<IDocsConfigurationProvider, DocsConfigurationProvider>();
+            services.AddSingleton<IDocsSourceFactory, DocsSourceFactory>();
 
             return services;
         }
