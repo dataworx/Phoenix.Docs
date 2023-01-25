@@ -48,7 +48,7 @@ namespace Phoenix.Docs.Configuration
                         project.TempPath = Path.Combine(this.environment.ContentRootPath,
                             configuredSettings.TempFolder, project.ShortName);
                     }
-                    return this.settings.Value;
+                    return configuredSettings;
                 });
 
                 if (options == null)

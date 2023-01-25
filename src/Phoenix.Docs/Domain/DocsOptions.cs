@@ -4,7 +4,7 @@ namespace Phoenix.Docs.Domain;
 
 public class DocsOptions
 {
-    public const string CONFIG_KEY = "Depot:Docs";
+    public const string CONFIG_KEY = "Phoenix:Docs";
 
     /// <summary>
     /// Gets or sets the template that will be used for rendering the documentation.
