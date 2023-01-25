@@ -37,8 +37,8 @@ public class Result<T> : Result
         return new Result<T>(true, null, value);
     }
 
-    public static Result<T?> Fail(Error? error)
+    public static Result<T> Fail(Error? error)
     {
-        return new Result<T?>(false, error, default(T));
+        return new Result<T>(false, error, default(T));
     }
 }

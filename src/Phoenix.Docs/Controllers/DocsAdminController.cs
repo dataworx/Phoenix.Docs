@@ -25,7 +25,7 @@ namespace Phoenix.Docs.Controllers
         
         #endregion
 
-        [HttpPost("shortName")]
+        [HttpPost("{shortName}")]
         public async Task<ActionResult<string>> CreateDocs(string shortName)
         {
             var result = await this.docsCreationService.CreateDocs(shortName);

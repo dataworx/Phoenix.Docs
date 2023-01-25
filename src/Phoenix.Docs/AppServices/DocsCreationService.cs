@@ -1,5 +1,8 @@
 ﻿using Phoenix.Docs.Configuration;
+using Phoenix.Docs.Errors;
 using Phoenix.Docs.Results;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Phoenix.Docs.AppServices;
@@ -23,6 +26,14 @@ public class DocsCreationService : IDocsCreationService
 
     public Task<Result<string>> CreateDocs(string projectShortName)
     {
-        throw new System.NotImplementedException();
+        var project = this.configProvider.Settings.Projects
+            .SingleOrDefault(x => x.ShortName.Equals(projectShortName, StringComparison.InvariantCultureIgnoreCase));
+
+        if (project == null)
+        {
+            return Task.FromResult(Result<string>.Fail(KnownErrors.Project.NotFound));
+        }
+
+        return null;
     }
 }

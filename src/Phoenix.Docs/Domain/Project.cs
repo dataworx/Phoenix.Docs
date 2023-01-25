@@ -37,6 +37,8 @@ public class Project
     /// </value>
     public string NavigationDocument { get; set; } = string.Empty;
 
+    public string DocsSource { get; set; }
+
     /// <summary>
     /// Gets or sets the source properties that will be passed to the DocsSource implementation.
     /// </summary>
