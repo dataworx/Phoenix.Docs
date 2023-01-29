@@ -9,9 +9,8 @@ namespace Phoenix.Docs.Configuration
     {
         public static IServiceCollection AddPhoenixDocs(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<DocsOptions>(configuration.GetSection(DocsOptions.CONFIG_KEY));
+            services.Configure<DocsConfiguration>(configuration.GetSection(DocsConfiguration.CONFIG_KEY));
             services.AddScoped<IDocsCreationService, DocsCreationService>();
-            services.AddScoped<IDocsConfigurationProvider, DocsConfigurationProvider>();
             services.AddSingleton<IDocsSourceFactory, DocsSourceFactory>();
 
             return services;

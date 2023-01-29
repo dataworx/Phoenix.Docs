@@ -1,4 +1,4 @@
-﻿using Phoenix.Docs.Configuration;
+﻿using Microsoft.Extensions.Options;
 using Phoenix.Docs.Domain;
 using Phoenix.Docs.Errors;
 using Phoenix.Docs.Results;
@@ -12,42 +12,42 @@ public class DocsCreationService : IDocsCreationService
 {
     #region Fields
 
-    private readonly IDocsConfigurationProvider configProvider;
+    private readonly DocsConfiguration configuration;
     private readonly IDocsSourceFactory sourceFactory;
 
     #endregion
 
     #region Constructors
     
-    public DocsCreationService(IDocsConfigurationProvider configProvider, IDocsSourceFactory sourceFactory)
+    public DocsCreationService(IOptions<DocsConfiguration> configuration, IDocsSourceFactory sourceFactory)
     {
-        this.configProvider = configProvider;
+        this.configuration = configuration.Value;
         this.sourceFactory = sourceFactory;
     } 
     
     #endregion
 
-    public async Task<Result<string>> CreateDocs(string projectShortName)
+    public async Task<Result<string>> CreateDocs(string id)
     {
-        var project = this.configProvider.Settings.Projects
-            .SingleOrDefault(x => x.ShortName.Equals(projectShortName, StringComparison.InvariantCultureIgnoreCase));
+        var projectSource = this.configuration.Sources
+            .SingleOrDefault(x => x.Id.Equals(id, StringComparison.InvariantCultureIgnoreCase));
 
-        if (project == null)
+        if (projectSource == null)
         {
             return Result<string>.Fail(KnownErrors.Project.NotFound);
         }
 
-        var docsSource = sourceFactory.Get(project.DocsSource);
+        var docsSource = sourceFactory.Get(projectSource.SourceType);
         if (docsSource == null)
         {
             return Result<string>.Fail(KnownErrors.DocsSource.SourceNotFound);
         }
 
-        var navDoc = await docsSource.GetFile(project.NavigationDocument);
-        if (navDoc == null)
-        {
+        //var navDoc = await docsSource.GetFile(project.NavigationDocument);
+        //if (navDoc == null)
+        //{
             
-        }
+        //}
         return null;
     }
 }

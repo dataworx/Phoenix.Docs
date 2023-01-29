@@ -13,7 +13,7 @@ namespace Phoenix.Docs.Configuration
         
         public static IEndpointRouteBuilder UsePhoenixDocs(this IEndpointRouteBuilder endpoints)
         {
-            var options = endpoints.ServiceProvider.GetService<IOptions<DocsOptions>>();
+            var options = endpoints.ServiceProvider.GetService<IOptions<DocsConfiguration>>();
             if (options == null)
             {
                 Logger.Fatal("");
@@ -29,8 +29,6 @@ namespace Phoenix.Docs.Configuration
                     action = "Index"
                 });
             return endpoints;
-
-
         }
     }
 }
