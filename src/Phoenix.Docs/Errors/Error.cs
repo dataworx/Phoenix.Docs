@@ -11,4 +11,6 @@ public class Error
         ErrorMessage = errorMessage;
         ErrorCode = errorCode;
     }
+
+    public override string ToString() => ErrorMessage;
 }
