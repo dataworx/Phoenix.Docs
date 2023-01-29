@@ -5,7 +5,7 @@ namespace Phoenix.Docs.Domain
     /// <summary>
     ///   <para>Defines the source settings of a documentation project.</para>
     /// </summary>
-    public class ProjectSource
+    public class ProjectSourceConfiguration
     {
         /// <summary>
         /// The id is used to identity the project during the publishing process.

@@ -31,7 +31,7 @@ public class DocsConfiguration
     /// <value>
     /// The projects.
     /// </value>
-    public ICollection<ProjectSource> Sources { get; set; } = new List<ProjectSource>();
+    public ICollection<ProjectSourceConfiguration> Sources { get; set; } = new List<ProjectSourceConfiguration>();
 
     public string UrlBasePath => PublishFolder.Replace("\\", "/");
 }

@@ -1,7 +1,8 @@
-﻿using Serilog;
+﻿using Phoenix.Docs.Errors;
+using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Phoenix.Docs.Domain;
 
@@ -9,23 +10,24 @@ public class DocsSourceFactory : IDocsSourceFactory
 {
     #region Fields
 
-    private readonly IEnumerable<IDocsSource> sources;
     private readonly ILogger logger = Log.ForContext<DocsSourceFactory>();
 
     #endregion
 
-    #region Constructors
+    public static Dictionary<string, Func<IDocsSource>> Sources = new Dictionary<string, Func<IDocsSource>>();
 
-    public DocsSourceFactory(IEnumerable<IDocsSource> sources)
+    public async Task<IDocsSource?> Create(ProjectSourceConfiguration sourceConfig)
     {
-        this.sources = sources;
-    } 
-    
-    #endregion
+        if (Sources.ContainsKey(sourceConfig.SourceType))
+        {
+            var source = Sources[sourceConfig.SourceType]();
+            await source.Configure(sourceConfig);
 
-    public IDocsSource? Get(string sourceKey)
-    {
-        var source = sources.SingleOrDefault(x => x.Key.Equals(sourceKey, StringComparison.InvariantCultureIgnoreCase));
-        return source;
+            return source;
+        }
+
+        this.logger.Fatal(KnownErrors.DocsSource.SourceNotFound.ErrorMessage);
+
+        return null;
     }
 }

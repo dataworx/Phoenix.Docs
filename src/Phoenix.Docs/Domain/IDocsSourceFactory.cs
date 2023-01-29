@@ -1,7 +1,9 @@
-﻿namespace Phoenix.Docs.Domain
+﻿using System.Threading.Tasks;
+
+namespace Phoenix.Docs.Domain
 {
     public interface IDocsSourceFactory
     {
-        IDocsSource? Get(string sourceKey);
+        Task<IDocsSource?> Create(ProjectSourceConfiguration sourceConfiguration);
     }
 }

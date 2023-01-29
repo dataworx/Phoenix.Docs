@@ -4,8 +4,8 @@ namespace Phoenix.Docs.Domain
 {
     public interface IDocsSource
     {
-        public string Key { get; }
-        
+        Task Configure(ProjectSourceConfiguration sourceConfiguration);
+
         Task<DocsFile?> GetFile(string filePath);
     }
 }

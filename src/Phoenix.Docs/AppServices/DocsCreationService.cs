@@ -37,7 +37,7 @@ public class DocsCreationService : IDocsCreationService
             return Result<string>.Fail(KnownErrors.Project.NotFound);
         }
 
-        var docsSource = sourceFactory.Get(projectSource.SourceType);
+        var docsSource = await sourceFactory.Create(projectSource);
         if (docsSource == null)
         {
             return Result<string>.Fail(KnownErrors.DocsSource.SourceNotFound);
