@@ -44,6 +44,10 @@ public class DocsCreationService : IDocsCreationService
         }
 
         var navDoc = await docsSource.GetFile(project.NavigationDocument);
+        if (navDoc == null)
+        {
+            
+        }
         return null;
     }
 }
