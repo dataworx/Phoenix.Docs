@@ -1,4 +1,5 @@
 ﻿using Phoenix.Docs.Errors;
+using Phoenix.Docs.Infrastructure;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,10 @@ public class DocsSourceFactory : IDocsSourceFactory
 
     #endregion
 
-    public static Dictionary<string, Func<IDocsSource>> Sources = new Dictionary<string, Func<IDocsSource>>();
+    public static Dictionary<string, Func<IDocsSource>> Sources = new Dictionary<string, Func<IDocsSource>>()
+    {
+        { "github", () => new GithubDocsSource() }
+    };
 
     public async Task<IDocsSource?> Create(ProjectSourceConfiguration sourceConfig)
     {

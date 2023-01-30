@@ -43,11 +43,12 @@ public class DocsCreationService : IDocsCreationService
             return Result<string>.Fail(KnownErrors.DocsSource.SourceNotFound);
         }
 
-        //var navDoc = await docsSource.GetFile(project.NavigationDocument);
-        //if (navDoc == null)
-        //{
-            
-        //}
+        // Download config file from repo
+        // Enrich config with path information and store
+        // Download all content files (.md) referenced in the config file navigation section
+        // Parse files for linked content
+        // Download linked content
+        // Publish 
         return null;
     }
 }
