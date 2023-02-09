@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Phoenix.Docs.Domain;
 using Phoenix.Docs.Publish;
 
 namespace Phoenix.Docs.Configuration
