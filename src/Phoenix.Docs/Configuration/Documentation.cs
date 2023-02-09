@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
+using Phoenix.Docs.Domain;
 
-namespace Phoenix.Docs.Domain
+namespace Phoenix.Docs.Configuration
 {
     /// <summary>
-    ///   <para>Defines the source settings of a documentation project.</para>
+    ///   <para>Defines the settings for a documentation.</para>
     /// </summary>
-    public class ProjectSourceConfiguration
+    public class Documentation
     {
         /// <summary>
         /// The id is used to identity the project during the publishing process.
         /// </summary>
-        public string Id{ get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the source like gitlab, github, etc. This is used to find the appropriate <see cref="IDocsSource" /> implementation.
@@ -18,7 +19,7 @@ namespace Phoenix.Docs.Domain
         /// <value>
         /// The type of the source.
         /// </value>
-        public string? SourceType { get; set; }
+        public string SourceType { get; set; }
 
         /// <summary>
         /// Gets or sets the path to the projects' yaml confinguration file.

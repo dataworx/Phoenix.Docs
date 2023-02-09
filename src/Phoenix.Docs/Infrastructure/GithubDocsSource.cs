@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using Octokit;
+using Phoenix.Docs.Configuration;
 
 namespace Phoenix.Docs.Infrastructure
 {
@@ -14,7 +15,7 @@ namespace Phoenix.Docs.Infrastructure
             this.client = new Octokit.GitHubClient(new ProductHeaderValue("Phoenix.Docs.Client"));
         }
 
-        public Task Configure(ProjectSourceConfiguration sourceConfiguration)
+        public Task Configure(Documentation sourceConfiguration)
         {
             return Task.CompletedTask;
         }

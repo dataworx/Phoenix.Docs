@@ -34,6 +34,6 @@ app.MapRazorPages();
 
 // Registering the Phoenix.Docs controllers
 // Todo: Add to docs
-app.UsePhoenixDocs();
+//app.UsePhoenixDocs();
 
 app.Run();

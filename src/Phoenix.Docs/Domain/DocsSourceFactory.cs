@@ -1,4 +1,5 @@
-﻿using Phoenix.Docs.Errors;
+﻿using Phoenix.Docs.Configuration;
+using Phoenix.Docs.Errors;
 using Phoenix.Docs.Infrastructure;
 using Serilog;
 using System;
@@ -20,7 +21,7 @@ public class DocsSourceFactory : IDocsSourceFactory
         { "github", () => new GithubDocsSource() }
     };
 
-    public async Task<IDocsSource?> Create(ProjectSourceConfiguration sourceConfig)
+    public async Task<IDocsSource?> Create(Documentation sourceConfig)
     {
         if (Sources.ContainsKey(sourceConfig.SourceType))
         {
