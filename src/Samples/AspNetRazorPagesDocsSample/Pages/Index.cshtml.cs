@@ -1,9 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Phoenix.Docs.Publish;
 using Serilog;
+using System.Threading.Tasks;
 
 namespace AspNetRazorPagesDocsSample.Pages
 {
@@ -29,7 +27,7 @@ namespace AspNetRazorPagesDocsSample.Pages
             }
             else
             {
-                Message = string.Join("<br/>", result.Errors.Select(x => x.ErrorMessage));
+                Message = string.Join("<br/>", result.Errors);
             }
         }
 

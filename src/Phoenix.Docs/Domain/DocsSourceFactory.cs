@@ -1,5 +1,4 @@
 ﻿using Phoenix.Docs.Configuration;
-using Phoenix.Docs.Errors;
 using Phoenix.Docs.Infrastructure;
 using Serilog;
 using System;
@@ -31,7 +30,7 @@ public class DocsSourceFactory : IDocsSourceFactory
             return source;
         }
 
-        this.logger.Fatal(KnownErrors.DocsSource.SourceNotFound.ErrorMessage);
+        this.logger.Fatal("");
 
         return null;
     }

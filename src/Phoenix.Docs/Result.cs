@@ -1,5 +1,4 @@
-﻿using Phoenix.Docs.Errors;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Phoenix.Docs
 {
@@ -7,9 +6,9 @@ namespace Phoenix.Docs
     {
         #region Constructors
 
-        protected Result(bool success, Error? error)
+        protected Result(bool success, string? error)
         {
-            this.Errors = new List<Error>();
+            this.Errors = new List<string>();
             Success = success;
             if (error != null)
             {
@@ -21,14 +20,14 @@ namespace Phoenix.Docs
 
         public bool Success { get; }
 
-        public IList<Error> Errors { get; }
+        public IList<string> Errors { get; }
 
         public static Result Ok()
         {
             return new Result(true, null);
         }
 
-        public static Result Fail(Error? error)
+        public static Result Fail(string? error)
         {
             return new Result(false, error);
         }
@@ -38,7 +37,7 @@ namespace Phoenix.Docs
     {
         #region Constructors
 
-        protected Result(bool success, Error? error, T value) : base(success, error)
+        protected Result(bool success, string? error, T value) : base(success, error)
         {
             Value = value;
         }
@@ -52,7 +51,7 @@ namespace Phoenix.Docs
             return new Result<T>(true, null, value);
         }
 
-        public static Result<T> Fail(Error? error)
+        public new static Result<T> Fail(string? error)
         {
             return new Result<T>(false, error, default);
         }
