@@ -39,5 +39,5 @@ public class ProjectConfiguration
     /// <code></code></example>
     public string UrlPath { get; internal set; } = string.Empty;
 
-    public ICollection<MenuItem> Navigation { get; set; }
+    public ICollection<MenuItem> MenuItems { get; set; }
 }

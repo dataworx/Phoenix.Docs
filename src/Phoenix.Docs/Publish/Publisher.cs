@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Phoenix.Docs.Configuration;
+using Phoenix.Docs.Extensions;
 using Phoenix.Docs.Sources;
 using System;
 using System.Collections.Generic;
@@ -67,12 +68,11 @@ namespace Phoenix.Docs.Publish
 
                 // Parse configuration
                 var projectConfiguration = this.ParseConfiguration(configurationFile);
-
                 await this.docsStorage.SaveTempFile(documentation, projectConfiguration, configurationFile);
 
                 // Get linked file from menu in the configuration
-                //var linkedFilesFromNavigation = this.GetLinkedNaviationFiles(projectConfiguration);
-                //downloadQueue.EnqueueRange(pendingDocsFiles.Select(x => x.Path));
+                var linkedFilesFromNavigation = this.GetLinkedNaviationFiles(projectConfiguration.MenuItems);
+                downloadQueue.EnqueueRange(linkedFilesFromNavigation.Select(x => x.Path));
 
                 while (downloadQueue.Any())
                 {
@@ -87,11 +87,11 @@ namespace Phoenix.Docs.Publish
                             continue;
                         }
 
-                        //await this.docsStorage.SaveTempFile(documentation, projectConfiguration, file);
+                        await this.docsStorage.SaveTempFile(documentation, projectConfiguration, file);
 
                         if (Path.GetExtension(file.Filename).ToLower() == ".md")
                         {
-                            //downloadQueue.EnqueueRange(this.GetDocumentLinks(document.ContentDecoded));
+                            downloadQueue.EnqueueRange(this.GetDocumentLinks(file));
                         }
                     }
                     catch
@@ -106,27 +106,27 @@ namespace Phoenix.Docs.Publish
             return Result.Ok();
         }
 
-        //private object GetLinkedNaviationFiles(object projectConfiguration)
-        //{
-        //    var items = source.ToList();
-        //    var result = new List<NavigationItem>();
+        private IEnumerable<MenuItem> GetLinkedNaviationFiles(IEnumerable<MenuItem> menuItems)
+        {
+            var items = menuItems.ToList();
+            var result = new List<MenuItem>();
 
-        //    foreach (var item in items)
-        //    {
-        //        if (!string.IsNullOrWhiteSpace(item.Path))
-        //        {
-        //            result.Add(item);
-        //        }
+            foreach (var item in items)
+            {
+                if (!string.IsNullOrWhiteSpace(item.Path))
+                {
+                    result.Add(item);
+                }
 
-        //        if (item.Children.Any())
-        //        {
-        //            result.AddRange(GetPendingDocsFiles(item.Children));
-        //        }
-        //    }
+                if (item.Children.Any())
+                {
+                    result.AddRange(GetLinkedNaviationFiles(item.Children));
+                }
+            }
 
-        //    return result.ToList();
+            return result.ToList();
 
-        //}
+        }
 
         private ProjectConfiguration ParseConfiguration(DocsFile configurationFile)
         {
@@ -135,13 +135,24 @@ namespace Phoenix.Docs.Publish
             return projectConfiguration;
         }
 
-        private IEnumerable<string> GetDocumentLinks(string content)
+        private IEnumerable<string> GetDocumentLinks(DocsFile file)
         {
+            var links = new List<string>();
+
+            if (!Path.GetExtension(file.Filename).Equals(".md"))
+            {
+                return links;
+            }
+
+            var content = Encoding.UTF8.GetString(file.Content);
+
             const string regexMdLinks = @"\[(?<title>[^\[]+)\](\((?<path>.*)\))";
             foreach (Match match in Regex.Matches(content, regexMdLinks))
             {
-                yield return match.Groups["path"].Value;
+                links.Add(match.Groups["path"].Value);
             }
+
+            return links;
         }
 
         private IEnumerable<Documentation> GetDocsToPublish(string? id)
