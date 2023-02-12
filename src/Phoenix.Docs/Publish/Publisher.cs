@@ -84,6 +84,7 @@ namespace Phoenix.Docs.Publish
                         var file = await docsSource.GetFile(nextFile);
                         if (file == null)
                         {
+                            errors.Add($"{documentation.Id} - File not found: {nextFile}");
                             continue;
                         }
 
@@ -100,7 +101,7 @@ namespace Phoenix.Docs.Publish
                     }
                 }
 
-                //await this.docsStorage.Publish(documentation, projectConfiguration);
+                await this.docsStorage.Publish(documentation, projectConfiguration);
             }
 
             return Result.Ok();
