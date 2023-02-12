@@ -1,4 +1,4 @@
-﻿namespace Phoenix.Docs.Domain
+﻿namespace Phoenix.Docs
 {
     public class DocsFile
     {
@@ -8,6 +8,6 @@
 
         public string Encoding { get; set; }
 
-        public string ContentBase64 { get; set; }
+        public byte[] Content { get; set; }
     }
 }

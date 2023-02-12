@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Phoenix.Docs.Domain
+namespace Phoenix.Docs
 {
     public class MenuItem
     {
@@ -9,13 +9,13 @@ namespace Phoenix.Docs.Domain
         public string Path { get; set; }
 
         public ICollection<MenuItem> Children { get; set; } = new List<MenuItem>();
-        
+
         public bool IsLink => !string.IsNullOrWhiteSpace(Path);
 
         public bool HasChildren => Children.Count > 0;
-        
+
         public string Url { get; internal set; }
-        
+
         public bool IsActive { get; internal set; }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Phoenix.Docs.Configuration;
-using Phoenix.Docs.Domain;
 using System.Threading.Tasks;
 
-namespace Phoenix.Docs.Publish
+namespace Phoenix.Docs.DocsSources
 {
     public interface IDocsSourceFactory
     {

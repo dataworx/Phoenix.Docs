@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace Phoenix.Docs.Domain;
+namespace Phoenix.Docs;
 
 /// <summary>
 ///   <para>Defines a documentation project. Each project generates a independent single documentation site.</para>
 /// </summary>
-public class Project
+public class ProjectConfiguration
 {
     /// <summary>
     /// Gets or sets the friendly name of the project. 

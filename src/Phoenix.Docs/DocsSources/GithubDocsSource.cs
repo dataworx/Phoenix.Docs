@@ -1,10 +1,9 @@
-﻿using Phoenix.Docs.Domain;
+﻿using Octokit;
+using Phoenix.Docs.Configuration;
 using System;
 using System.Threading.Tasks;
-using Octokit;
-using Phoenix.Docs.Configuration;
 
-namespace Phoenix.Docs.Infrastructure
+namespace Phoenix.Docs.DocsSources
 {
     internal class GithubDocsSource : IDocsSource
     {
@@ -12,7 +11,7 @@ namespace Phoenix.Docs.Infrastructure
 
         public GithubDocsSource()
         {
-            this.client = new Octokit.GitHubClient(new ProductHeaderValue("Phoenix.Docs.Client"));
+            client = new GitHubClient(new ProductHeaderValue("Phoenix.Docs.Client"));
         }
 
         public Task Configure(Documentation sourceConfiguration)
