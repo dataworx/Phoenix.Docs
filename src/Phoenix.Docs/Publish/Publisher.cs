@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -65,9 +66,9 @@ namespace Phoenix.Docs.Publish
                 }
 
                 // Parse configuration
-                //var projectConfiguration = await this.ParseConfiguration(configuration);
+                var projectConfiguration = this.ParseConfiguration(configurationFile);
 
-                //await this.docsStorage.SaveTempFile(documentation, projectConfiguration, configurationFile);
+                await this.docsStorage.SaveTempFile(documentation, projectConfiguration, configurationFile);
 
                 // Get linked file from menu in the configuration
                 //var linkedFilesFromNavigation = this.GetLinkedNaviationFiles(projectConfiguration);
@@ -127,10 +128,12 @@ namespace Phoenix.Docs.Publish
 
         //}
 
-        //private Project ParseConfiguration(DocsConfiguration configuration)
-        //{
-        //    var docsConfiguration = this.serializer.Deserialize<Project>(navigationDocument.ContentDecoded);
-        //}
+        private ProjectConfiguration ParseConfiguration(DocsFile configurationFile)
+        {
+            var content = Encoding.UTF8.GetString(configurationFile.Content);
+            var projectConfiguration = this.serializer.Deserialize<ProjectConfiguration>(content);
+            return projectConfiguration;
+        }
 
         private IEnumerable<string> GetDocumentLinks(string content)
         {
