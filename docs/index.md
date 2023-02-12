@@ -12,6 +12,7 @@ Write your documentation in Markdown and create a single simple configuration fi
 
 ## tbd...
 
+- Add a getting started...
 - Document the publish workflow
 - Document the config file format
 - Document the source providers
