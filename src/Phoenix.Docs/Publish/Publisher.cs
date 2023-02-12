@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Phoenix.Docs.Configuration;
-using Phoenix.Docs.DocsSources;
+using Phoenix.Docs.Sources;
 using System;
 using System.Collections.Generic;
 using System.IO;

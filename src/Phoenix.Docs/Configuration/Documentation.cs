@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Phoenix.Docs.DocsSources;
+using Phoenix.Docs.Sources;
 
 namespace Phoenix.Docs.Configuration
 {

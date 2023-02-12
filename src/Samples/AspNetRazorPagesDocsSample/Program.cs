@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Phoenix.Docs.Configuration;
-using Phoenix.Docs.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 

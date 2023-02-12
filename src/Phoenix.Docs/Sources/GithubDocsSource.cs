@@ -3,7 +3,7 @@ using Phoenix.Docs.Configuration;
 using System;
 using System.Threading.Tasks;
 
-namespace Phoenix.Docs.DocsSources
+namespace Phoenix.Docs.Sources
 {
     internal class GithubDocsSource : IDocsSource
     {

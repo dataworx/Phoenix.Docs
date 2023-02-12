@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Phoenix.Docs.Configuration;
 
-namespace Phoenix.Docs.DocsSources
+namespace Phoenix.Docs.Sources
 {
     public interface IDocsSource
     {
