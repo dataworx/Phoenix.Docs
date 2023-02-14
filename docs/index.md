@@ -10,6 +10,8 @@ The main purpose is to publish the documentation and provide additional function
 hindering you in creating the documentation. There are only two requirements. 
 Write your documentation in Markdown and create a single simple configuration file.
 
+## Overview
+
 The process of making your documentation available to users consists of two stages, Publish and Server.
 
 ### Publish
@@ -24,3 +26,49 @@ The published files are not served directly. You have to provide a Razor Page or
 to render (serve) the documentation.
 
 Next step: [Configuration](configuration.md)
+
+## Configuration
+
+### Server side configuration
+
+The server side needs some basic configuration to be able to fetch and publish your documentations. This configuration 
+is stored in the appsettings file. 
+
+#### Configuration Settings
+
+|Name|Description|
+|---|---|
+|**TempFolder**|During the publish process the files downloaded from the source are stored in this temporary location. This folder is relative to the [IHostEnvironment.ContentRootPath](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostenvironment.contentrootpath?view=dotnet-plat-ext-7.0#microsoft-extensions-hosting-ihostenvironment-contentrootpath). |
+|**PublishFolder**||
+
+
+```json
+{
+  "Phoenix": {
+    "Docs": {
+      "TempFolder": "Temp_Data\\docs\\",
+      "PublishFolder": "docs",
+      "Documentations": [
+        {
+          "Id": "1",
+          "SourceType": "github",
+          "ConfigurationFilePath": "docs/phoenix.docs.project.yml",
+          "SourceProperties": {
+            "BaseUrl": "",
+            "Branch": "",
+            "RepositoryName": ""
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+
+## tbd...
+
+- Document the config file format
+- Document the source providers
+- Create a roadmap
+- Add a changelog as part of the documentation
