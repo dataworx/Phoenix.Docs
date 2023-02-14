@@ -78,6 +78,10 @@ is stored in the appsettings file.
 
 ```
 
+### Documentation configuration
+
+
+
 ## tbd...
 
 - Document the config file format
