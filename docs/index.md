@@ -10,12 +10,17 @@ The main purpose is to publish the documentation and provide additional function
 hindering you in creating the documentation. There are only two requirements. 
 Write your documentation in Markdown and create a single simple configuration file.
 
-## tbd...
+The process of making your documentation available to users consists of two stages, Publish and Server.
 
-- Add a getting started...
-- Document the publish workflow
-- Document the config file format
-- Document the source providers
-- Document the hosting workflow
-- Create a roadmap
-- Add a changelog as part of the documentation
+### Publish
+
+The publish stage downloads the source files (Configuration, Markdown, Content) from 
+the source (github, gitlab, etc.) using a `IDocsSource` implementation. The downloaded markdown files are
+converted to html. When all files a downloaded and processed they will be stored in the configured publish location.
+
+### Serve
+
+The published files are not served directly. You have to provide a Razor Page or Mvc View supported by designated services 
+to render (serve) the documentation.
+
+Next step: [Configuration](Configuration.md)
