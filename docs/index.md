@@ -36,11 +36,23 @@ is stored in the appsettings file.
 
 #### Configuration Settings
 
+##### General
+
 |Name|Description|
 |---|---|
-|**TempFolder**|During the publish process the files downloaded from the source are stored in this temporary location. This folder is relative to the [IHostEnvironment.ContentRootPath](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostenvironment.contentrootpath?view=dotnet-plat-ext-7.0#microsoft-extensions-hosting-ihostenvironment-contentrootpath). |
-|**PublishFolder**||
+|**TempFolder**|During the publish process the files downloaded from the source are stored in this temporary folder. This folder is relative to the [IHostEnvironment.ContentRootPath](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostenvironment.contentrootpath?view=dotnet-plat-ext-7.0#microsoft-extensions-hosting-ihostenvironment-contentrootpath). |
+|**PublishFolder**|This is the public folder where all processed files are store. This folder is relative to the [IWebHostEnvironment.WebRootPath](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostenvironment.contentrootpath?view=dotnet-plat-ext-7.0#microsoft-extensions-hosting-ihostenvironment-contentrootpath).|
+|**Documentations**|Individual configuration settings for each documentation that should be published|
 
+##### Documentation
+|Name|Description|
+|---|---|
+|**Id**|Unique Id of the documentation setting|
+|**SourceType**|The type of the source like gitlab, github, etc. This is used to find the appropriate `IDocsSource` implementation|
+|**ConfigurationFilePath**|The path to the documentation configuration file within the source.|
+|**SourceProperties**|Custom settings for the given SourceType as key value pairs|
+
+##### Example configuration file
 
 ```json
 {
