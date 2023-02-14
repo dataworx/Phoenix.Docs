@@ -23,4 +23,4 @@ converted to html. When all files a downloaded and processed they will be stored
 The published files are not served directly. You have to provide a Razor Page or Mvc View supported by designated services 
 to render (serve) the documentation.
 
-Next step: [Configuration](Configuration.md)
+Next step: [Configuration](configuration.md)
