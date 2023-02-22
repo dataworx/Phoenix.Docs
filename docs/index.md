@@ -60,11 +60,11 @@ is stored in the appsettings file.
     "Docs": {
       "TempFolder": "Temp_Data\\docs\\",
       "PublishFolder": "docs",
-      "Documentations": [
+      "SourceConfigurations": [
         {
           "Id": "1",
           "SourceType": "github",
-          "ConfigurationFilePath": "docs/phoenix.docs.project.yml",
+          "SettingsFilePath": "docs/phoenix.docs.project.yml",
           "SourceProperties": {
             "BaseUrl": "",
             "Branch": "",
