@@ -44,32 +44,32 @@ namespace Phoenix.Docs.Publish
 
             if (!sourceConfigurations.Any())
             {
-                var result = Result.Fail("No documentation configuration(s) found");
+                return Result.Fail("No source configuration(s) found");
             }
 
-            foreach (var documentation in sourceConfigurations)
+            foreach (var sourceConfiguration in sourceConfigurations)
             {
                 var downloadQueue = new Queue<string>();
 
                 // Create documentation source
-                var docsSource = await sourceFactory.Create(documentation);
+                var docsSource = await sourceFactory.Create(sourceConfiguration);
                 if (docsSource == null) 
                 {
-                    errors.Add($"{documentation.Id}: No DocsSource found for SourceType: {documentation.SourceType}");
+                    errors.Add($"{sourceConfiguration.Id}: No DocsSource found for SourceType: {sourceConfiguration.SourceType}");
                     continue;
                 }
 
                 // Download configuration file from source
-                var configurationFile = await docsSource.GetFile(documentation.ConfigurationFilePath);
+                var configurationFile = await docsSource.GetFile(sourceConfiguration.SettingsFilePath);
                 if (configurationFile == null)
                 {
-                    errors.Add($"{documentation.Id} - Could not load configuration file: {documentation.ConfigurationFilePath}");
+                    errors.Add($"{sourceConfiguration.Id} - Could not load configuration file: {sourceConfiguration.SettingsFilePath}");
                     continue;
                 }
 
                 // Parse configuration
                 var projectConfiguration = this.ParseConfiguration(configurationFile);
-                await this.docsStore.SaveTempFile(documentation, projectConfiguration, configurationFile);
+                await this.docsStore.SaveTempFile(sourceConfiguration, projectConfiguration, configurationFile);
 
                 // Get linked file from menu in the configuration
                 var linkedFilesFromNavigation = this.GetLinkedNaviationFiles(projectConfiguration.MenuItems);
@@ -85,11 +85,11 @@ namespace Phoenix.Docs.Publish
                         var file = await docsSource.GetFile(nextFile);
                         if (file == null)
                         {
-                            errors.Add($"{documentation.Id} - File not found: {nextFile}");
+                            errors.Add($"{sourceConfiguration.Id} - File not found: {nextFile}");
                             continue;
                         }
 
-                        await this.docsStore.SaveTempFile(documentation, projectConfiguration, file);
+                        await this.docsStore.SaveTempFile(sourceConfiguration, projectConfiguration, file);
 
                         if (Path.GetExtension(file.Filename).ToLower() == ".md")
                         {
@@ -102,7 +102,7 @@ namespace Phoenix.Docs.Publish
                     }
                 }
 
-                await this.docsStore.Publish(documentation, projectConfiguration);
+                await this.docsStore.Publish(sourceConfiguration, projectConfiguration);
             }
 
             return Result.Ok();

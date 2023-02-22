@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Phoenix.Docs.Configuration;
+﻿using Phoenix.Docs.Configuration;
+using System.Threading.Tasks;
 
 namespace Phoenix.Docs.Store;
 

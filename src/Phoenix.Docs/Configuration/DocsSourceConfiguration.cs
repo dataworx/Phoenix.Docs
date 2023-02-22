@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Phoenix.Docs.Sources;
+﻿using Phoenix.Docs.Sources;
+using System.Collections.Generic;
 
 namespace Phoenix.Docs.Configuration
 {
@@ -11,7 +11,7 @@ namespace Phoenix.Docs.Configuration
         /// <summary>
         /// The id is used to identity the project during the publishing process.
         /// </summary>
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the source like gitlab, github, etc. This is used to find the appropriate <see cref="IDocsSource" /> implementation.
@@ -19,12 +19,12 @@ namespace Phoenix.Docs.Configuration
         /// <value>
         /// The type of the source.
         /// </value>
-        public string SourceType { get; set; }
+        public string? SourceType { get; set; }
 
         /// <summary>
-        /// Gets or sets the path to the projects' yaml confinguration file.
+        /// Gets or sets the path to the docs' json configuration file.
         /// </summary>
-        public string ConfigurationFilePath { get; set; }
+        public string? SettingsFilePath { get; set; }
 
 
         /// <summary>
