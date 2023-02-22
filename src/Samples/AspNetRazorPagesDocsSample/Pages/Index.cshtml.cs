@@ -23,7 +23,7 @@ namespace AspNetRazorPagesDocsSample.Pages
             var result = await this.publisher.Publish();
             if (result.Success)
             {
-                Message = "Documentation generated successfully";
+                Message = "DocsSourceConfiguration generated successfully";
             }
             else
             {

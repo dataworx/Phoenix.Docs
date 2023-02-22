@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Phoenix.Docs.Sources;
+﻿using Phoenix.Docs.Sources;
+using System.Collections.Generic;
 
 namespace Phoenix.Docs.Configuration
 {
@@ -32,7 +32,7 @@ namespace Phoenix.Docs.Configuration
         /// <value>
         /// The projects.
         /// </value>
-        public ICollection<Documentation> Documentations { get; set; } = new List<Documentation>();
+        public ICollection<DocsSourceConfiguration> SourceConfigurations { get; set; } = new List<DocsSourceConfiguration>();
 
         public string UrlBasePath => PublishFolder.Replace("\\", "/");
     }

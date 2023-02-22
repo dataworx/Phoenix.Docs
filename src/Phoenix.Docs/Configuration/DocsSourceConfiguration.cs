@@ -6,7 +6,7 @@ namespace Phoenix.Docs.Configuration
     /// <summary>
     ///   <para>Defines the settings for a documentation.</para>
     /// </summary>
-    public class Documentation
+    public class DocsSourceConfiguration
     {
         /// <summary>
         /// The id is used to identity the project during the publishing process.

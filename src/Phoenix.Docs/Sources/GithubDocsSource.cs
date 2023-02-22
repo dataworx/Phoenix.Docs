@@ -14,7 +14,7 @@ namespace Phoenix.Docs.Sources
             client = new GitHubClient(new ProductHeaderValue("Phoenix.Docs.Client"));
         }
 
-        public Task Configure(Documentation sourceConfiguration)
+        public Task Configure(DocsSourceConfiguration sourceConfiguration)
         {
             return Task.CompletedTask;
         }

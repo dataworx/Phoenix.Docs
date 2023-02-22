@@ -5,6 +5,6 @@ namespace Phoenix.Docs.Sources
 {
     public interface IDocsSourceFactory
     {
-        Task<IDocsSource?> Create(Documentation documentation);
+        Task<IDocsSource?> Create(DocsSourceConfiguration docsSourceConfiguration);
     }
 }

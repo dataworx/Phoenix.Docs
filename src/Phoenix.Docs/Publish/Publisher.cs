@@ -2,6 +2,7 @@
 using Phoenix.Docs.Configuration;
 using Phoenix.Docs.Extensions;
 using Phoenix.Docs.Sources;
+using Phoenix.Docs.Store;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,18 +19,18 @@ namespace Phoenix.Docs.Publish
 
         private readonly DocsConfiguration configuration;
         private readonly IDocsSourceFactory sourceFactory;
-        private readonly IDocsStorage docsStorage;
+        private readonly IDocsStore docsStore;
         private readonly IConfigurationSerializer serializer;
 
         #endregion
 
         #region Constructors
 
-        public Publisher(IOptions<DocsConfiguration> configuration, IDocsSourceFactory sourceFactory, IDocsStorage docsStorage, IConfigurationSerializer serializer)
+        public Publisher(IOptions<DocsConfiguration> configuration, IDocsSourceFactory sourceFactory, IDocsStore docsStore, IConfigurationSerializer serializer)
         {
             this.configuration = configuration.Value;
             this.sourceFactory = sourceFactory;
-            this.docsStorage = docsStorage;
+            this.docsStore = docsStore;
             this.serializer = serializer;
         }
 
@@ -39,14 +40,14 @@ namespace Phoenix.Docs.Publish
         {
             var errors = new List<string>();
 
-            var docsToPublish = this.GetDocsToPublish(id);
+            var sourceConfigurations = this.GetDocSources(id);
 
-            if (!docsToPublish.Any())
+            if (!sourceConfigurations.Any())
             {
                 var result = Result.Fail("No documentation configuration(s) found");
             }
 
-            foreach (var documentation in docsToPublish)
+            foreach (var documentation in sourceConfigurations)
             {
                 var downloadQueue = new Queue<string>();
 
@@ -68,7 +69,7 @@ namespace Phoenix.Docs.Publish
 
                 // Parse configuration
                 var projectConfiguration = this.ParseConfiguration(configurationFile);
-                await this.docsStorage.SaveTempFile(documentation, projectConfiguration, configurationFile);
+                await this.docsStore.SaveTempFile(documentation, projectConfiguration, configurationFile);
 
                 // Get linked file from menu in the configuration
                 var linkedFilesFromNavigation = this.GetLinkedNaviationFiles(projectConfiguration.MenuItems);
@@ -88,7 +89,7 @@ namespace Phoenix.Docs.Publish
                             continue;
                         }
 
-                        await this.docsStorage.SaveTempFile(documentation, projectConfiguration, file);
+                        await this.docsStore.SaveTempFile(documentation, projectConfiguration, file);
 
                         if (Path.GetExtension(file.Filename).ToLower() == ".md")
                         {
@@ -101,7 +102,7 @@ namespace Phoenix.Docs.Publish
                     }
                 }
 
-                await this.docsStorage.Publish(documentation, projectConfiguration);
+                await this.docsStore.Publish(documentation, projectConfiguration);
             }
 
             return Result.Ok();
@@ -156,12 +157,12 @@ namespace Phoenix.Docs.Publish
             return links;
         }
 
-        private IEnumerable<Documentation> GetDocsToPublish(string? id)
+        private IEnumerable<DocsSourceConfiguration> GetDocSources(string? id)
         {
-            var docsToPublish = new List<Documentation>();
+            var docsToPublish = new List<DocsSourceConfiguration>();
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var doc = configuration.Documentations
+                var doc = configuration.SourceConfigurations
                     .SingleOrDefault(x => x.Id.Equals(id, StringComparison.InvariantCultureIgnoreCase));
 
                 if (doc != null)
@@ -171,7 +172,7 @@ namespace Phoenix.Docs.Publish
             }
             else
             {
-                docsToPublish.AddRange(configuration.Documentations);
+                docsToPublish.AddRange(configuration.SourceConfigurations);
             }
 
             return docsToPublish;

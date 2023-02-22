@@ -17,12 +17,12 @@ public class DocsSourceFactory : IDocsSourceFactory
         { "github", () => new GithubDocsSource() }
     };
 
-    public async Task<IDocsSource?> Create(Documentation documentation)
+    public async Task<IDocsSource?> Create(DocsSourceConfiguration docsSourceConfiguration)
     {
-        if (Sources.ContainsKey(documentation.SourceType))
+        if (Sources.ContainsKey(docsSourceConfiguration.SourceType))
         {
-            var source = Sources[documentation.SourceType]();
-            await source.Configure(documentation);
+            var source = Sources[docsSourceConfiguration.SourceType]();
+            await source.Configure(docsSourceConfiguration);
 
             return source;
         }

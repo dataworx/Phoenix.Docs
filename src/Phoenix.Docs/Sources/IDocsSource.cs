@@ -5,7 +5,7 @@ namespace Phoenix.Docs.Sources
 {
     public interface IDocsSource
     {
-        Task Configure(Documentation sourceConfiguration);
+        Task Configure(DocsSourceConfiguration sourceConfiguration);
 
         Task<DocsFile?> GetFile(string filePath);
     }
